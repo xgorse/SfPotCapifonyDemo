@@ -1,9 +1,9 @@
-set :application, "set your application name here"
-set :domain,      "#{application}.com"
-set :deploy_to,   "/var/www/#{domain}"
+set :application, "SfPotCapifonyDemo"
+set :domain,      "sfpot.vm1"
+set :deploy_to,   "/home/vagrant/SfPotCapifonyDemo"
 set :app_path,    "app"
 
-set :repository,  "#{domain}:/var/repos/#{application}.git"
+set :repository,  "git://github.com/xgorse/SfPotCapifonyDemo.git"
 set :scm,         :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, or `none`
 
@@ -16,5 +16,18 @@ role :db,         domain, :primary => true       # This is where Symfony2 migrat
 
 set  :keep_releases,  3
 
+# Symfony shared Config
+set :shared_files,      ["app/config/parameters.yml"]
+set :shared_children,   [app_path + "/logs", web_path + "/uploads", "vendor"]
+
+
+#Composer settings
+set :use_composer, true
+set :copy_vendors, false
+
+#Permission 
+set :use_sudo,      false
+
+
 # Be more verbose by uncommenting the following line
-# logger.level = Logger::MAX_LEVEL
+#logger.level = Logger::MAX_LEVEL
