@@ -1,3 +1,8 @@
+set :stages,        %w(rec prod)
+set :default_stage, "rec"
+set :stage_dir,     "app/config/deploy"
+require 'capistrano/ext/multistage'
+
 set :application, "SfPotCapifonyDemo"
 set :domain,      "sfpot.vm1"
 set :deploy_to,   "/home/vagrant/SfPotCapifonyDemo"
